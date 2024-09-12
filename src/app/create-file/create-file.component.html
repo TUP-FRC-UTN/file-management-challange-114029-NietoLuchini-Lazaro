@@ -1,0 +1,36 @@
+<div class="container">
+    <form #formFile="ngForm" (ngSubmit)="saveFile(formFile)">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" required #controlname="ngModel">
+        <div *ngIf="controlname.invalid && (controlname.dirty || controlname.touched)">
+        <div *ngIf="controlname.errors?.['required']">Name is required!</div>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input type="date" class="form-control" id="date" name="date" [(ngModel)]="date" required #controldate="ngModel">
+        <div *ngIf="controldate.invalid && (controldate.dirty || controldate.touched)">
+          <div *ngIf="controldate.errors?.['required']">Date is required!</div>
+        </div>
+      </div>
+  
+      <div class="mb-3 form-check">
+        <label for="type" class="form-label">Type</label>
+        <select class="form-select" id="type" name="type" [(ngModel)]="type" required>
+          <option *ngFor="let type of listType" [value]="type">{{type}}</option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label for="owner" class="form-label">Owner</label>
+        <select class="form-select" id="owner" name="owner" [(ngModel)]="owner">
+          <option *ngFor="let owner of listOwner" [value]="owner.name">{{owner.name}}</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  

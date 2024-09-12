@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Files</h1>
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-primary m-5" (click)="processSelectedFiles()">Borrar</button>
+        <button class="btn btn-primary m-5" (click)="navegar()">Nuevo</button>
+      </div>
+      
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Duenos</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+            <tr *ngFor="let files of listFiles">
+
+                <td> <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    [value]="files.id" 
+                    [(ngModel)]="selectedFileIds[files.id]"
+                  ></td>
+                <td>{{files.name}}</td>
+                <td>{{ files.creation | date:'MMM d, yyyy' }}</td>
+
+                <td>
+                    <span *ngFor="let owner of files.owners; let last = last">
+                        <img src="{{owner.avatarUrl}}" width="35px" style="border-radius: 50%" >
+                      </span>
+                </td>
+            </tr>
+          
+        </tbody>
+      </table>
+</div>
+
